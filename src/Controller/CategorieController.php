@@ -18,25 +18,22 @@ class CategorieController extends AbstractController
         ]);
     }
 
+
     /**
-     * @Route("/new", name="categorie_new", methods={"GET","POST"})
+     * @Route("/categorie/add/{name}", name="categorie.add")
      */
-    public function new(Request $request): Response
+    public function add($name): Response
     {
-        $categorie = new Categorie();
-        $form = $this->createForm(CategorieType::class, $categorie);
-        $form->handleRequest($request);
+        $categorie= new categorie();
+        $categorie->setName($name);
+        $entityManager=$this->getDoctrine()->getManager();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($categorie);
-            $entityManager->flush();
-
-        }
-
-        return $this->render('Categorie/new.html.twig', [
+        $entityManager->persist($categorie);
+        $entityManager->flush();
+        $this->addFlash("notice", "Produit ajouté avec succés..");
+        //return $this->redirectToRoute("produit.list");
+       return $this->render('categorie/add.html.twig', [
             'categorie' => $categorie,
-            'form' => $form->createView(),
         ]);
     }
 }

@@ -32,11 +32,7 @@ class Animal
      */
     private $Description;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Calegorie::class, inversedBy="animals")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Categorie;
+   
 
     public function getId(): ?int
     {
@@ -79,15 +75,5 @@ class Animal
         return $this;
     }
 
-    public function getCategorie(): ?Calegorie
-    {
-        return $this->Categorie;
-    }
-
-    public function setCategorie(?Calegorie $Categorie): self
-    {
-        $this->Categorie = $Categorie;
-
-        return $this;
-    }
+    
 }
