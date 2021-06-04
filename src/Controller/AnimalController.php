@@ -6,6 +6,9 @@ use App\Entity\Animal;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use App\Repository\AnimalRepository;
+use App\Form\AnimalType;
 
 class AnimalController extends AbstractController
 {/**
@@ -76,6 +79,26 @@ class AnimalController extends AbstractController
             'animal' => $animal,
         ]);
     }
+    /**
+     * @Route("/animal/update/{id}/{newname}", name="animal.update")
+     */
+    public function update($id,$newname): Response
+    {
+        // chercher le produit à modifier
+        $repository = $this->getDoctrine()->getRepository(Animal::class);
+        $animal = $repository->find($id);
+
+        // on modifie le produit
+        $animal->setName($newname);
+        
+        $entityManager = $this->getDoctrine()->getManager();
+        // dans ce cas le persist n'est pas obligatoire
+        $entityManager->persist($animal);
+        $entityManager->flush();
+        $this->addFlash("notice", "Produit modifié avec succés..");
+        return $this->redirectToRoute("animal.list");
+       
+    }
 
     /**
      * @Route("/addanimal", name="animal.addanimal")
@@ -85,7 +108,7 @@ class AnimalController extends AbstractController
         // création de l'entité
         $animal = new Animal();
         // création du formulaire lié à l'entité
-        $form = $this->createForm(ProduitType::class,$animal);
+        $form = $this->createForm(AnimalType::class,$animal);
         //Traitement du formulaire
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
