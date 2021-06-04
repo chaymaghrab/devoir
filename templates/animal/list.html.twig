@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout produit
+{% endblock %}
+
+{% block body %}
+	<h1>Liste de tous les animaux</h1>
+{% for message in app.flashes('notice') %}
+<div class="alert alert-success" role="alert">
+
+		{{ message }}
+	</div>
+{% endfor %}
+
+	<div class="container">
+		<table class="table table-striped">
+
+			{% for an in animal %}
+				<tr>
+					<td>
+						{{ an.id }}
+					</td>
+					<td>
+						{{ an.name }}
+					</td>
+					<td>
+						{{ an.description }}
+					</td>
+					<td>
+						<a href="{{ path('animal.detail',{'id':an.id}) }}" class="btn btn-primary">Détail</a>
+
+					</td>
+					<td>
+						<a href="{{ path('animal.delete',{'id':an.id}) }}" class="btn btn-primary">Supprimer</a>
+
+					</td>
+
+
+				</tr>
+
+			{% endfor %}
+		</table>
+	</div>
+
+{% endblock %}

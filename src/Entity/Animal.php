@@ -23,11 +23,6 @@ class Animal
     private $Name;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $Age;
-
-    /**
      * @ORM\Column(type="text", nullable=true)
      */
     private $Description;
