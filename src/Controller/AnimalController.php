@@ -127,4 +127,27 @@ class AnimalController extends AbstractController
 
         return $this->render('animal/addanimal.html.twig',['form' => $form->createView()]);
     }
+
+     /**
+     * @Route("edit/{id}", name="animal.edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Animal $animal): Response
+    {
+        $form = $this->createForm(AnimalType::class, $animal);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('animal.list');
+        }
+
+        return $this->render('animal/edit.html.twig', [
+            'animal' => $animal,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    
+
 }
