@@ -27,6 +27,12 @@ class Animal
      */
     private $Description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="animals")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+
    
 
     public function getId(): ?int
@@ -66,6 +72,18 @@ class Animal
     public function setDescription(?string $Description): self
     {
         $this->Description = $Description;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

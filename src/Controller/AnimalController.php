@@ -3,16 +3,18 @@
 namespace App\Controller;
 
 use App\Entity\Animal;
+use App\Form\AnimalType;
+use App\Entity\PropertySearch;
+use App\Form\PropertySearchType;
+use App\Repository\AnimalRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use App\Repository\AnimalRepository;
-use App\Form\AnimalType;
 
 class AnimalController extends AbstractController
 {/**
-     * @Route("/animallist", name="animal.list" )
+     * @Route("/list", name="animal.list" )
      */
     public function list(): Response
     {
@@ -115,13 +117,13 @@ class AnimalController extends AbstractController
             // $form->getData() holds the submitted values
             // but, the original `$task` variable has also been updated
             $animal = $form->getData();
-            $animal->setCreatedAt(new \DateTime());
+            //$animal->setCreatedAt(new \DateTime());
             // ... perform some action, such as saving the task to the database
             // for example, if Task is a Doctrine entity, save it!
              $entityManager = $this->getDoctrine()->getManager();
              $entityManager->persist($animal);
              $entityManager->flush();
-
+             $this->addFlash("notice","animal ajouter avec succés..");
             return $this->redirectToRoute('animal.list');
         }
 
@@ -147,7 +149,27 @@ class AnimalController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * @Route("/recherche", name="recherche")
+     * 
+     */
+    public  function Rechercher(Request $request){
+        $propertySearch = new PropertySearch();
+        $form = $this->createForm(PropertySearchType::class,$propertySearch);
+        $form->handleRequest($request);
+        $proteines=[];
+        if ($form->isSubmitted()&&$form->isValid()){
 
-    
+        $nom = $propertySearch->getNom();
+        if ($nom!= "")
+        //si on a fourni un nom d'article on affiche tous les articles ayan
+        $animals=$this->getDoctrine()->getRepository(Animal::class)->findBy(['nom'=>$nom]);
+        else
+        //si si aucun nom n'est fourni on affiche tous les articles
+        $animals= $this->getDoctrine()->getRepository(Animal::class)->findAll();
+        }
 
+        return $this ->render('animal/recherche.html.twig',['form'=>$form->createView(),'animals'=>$animals]);
+        }
+        
 }

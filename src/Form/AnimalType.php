@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Animal;
+use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AnimalType extends AbstractType
@@ -14,6 +16,18 @@ class AnimalType extends AbstractType
         $builder
             ->add('Name')
             ->add('Description')
+
+         ->add('categorie',EntityType::class,[
+                // looks for choices from this entity
+                'class' => Categorie::class,
+            
+                // uses the User.username property as the visible option string
+                'choice_label' => 'name',
+            
+                // used to render a select box, check boxes or radios
+                // 'multiple' => true,
+                // 'expanded' => true,
+            ])
         ;
     }
 
