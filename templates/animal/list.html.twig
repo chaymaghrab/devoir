@@ -51,6 +51,7 @@
 					<td>
 						{{ an.description }}
 					</td>
+					<img  height="250px" widht="50px" class="card-img-top" src="{{ asset('/uploads/' ~ an.filename)}}">	
 					<td>
 						<a href="{{ path('animal.detail',{'id':an.id}) }}" class="btn btn-primary">Détail</a>
 

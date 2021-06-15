@@ -10,6 +10,7 @@ use App\Repository\AnimalRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnimalController extends AbstractController
@@ -21,6 +22,17 @@ class AnimalController extends AbstractController
         $repository= $this->getDoctrine()->getRepository(Animal::class);
         $animal=$repository->findAll();
         return $this->render('animal/list.html.twig', [
+            'animal' =>  $animal ,
+        ]);
+    }
+    /**
+     * @Route("/home", name="animal.home" )
+     */
+    public function home(): Response
+    {
+        $repository= $this->getDoctrine()->getRepository(Animal::class);
+        $animal=$repository->findAll();
+        return $this->render('animal/home.html.twig', [
             'animal' =>  $animal ,
         ]);
     }
@@ -105,7 +117,7 @@ class AnimalController extends AbstractController
     /**
      * @Route("/addanimal", name="animal.addanimal")
      */
-    public function addanimal(Request $request): Response
+    public function addanimal(Request $request,SluggerInterface $slugger): Response
     {
         // création de l'entité
         $animal = new Animal();
@@ -117,6 +129,22 @@ class AnimalController extends AbstractController
             // $form->getData() holds the submitted values
             // but, the original `$task` variable has also been updated
             $animal = $form->getData();
+             /**@var UploadedFile $uploadedFile */
+             $uploadedFile = $form['imageFile']->getData();
+             $destination = $this->getParameter('kernel.project_dir').'/public/uploads';
+             //$destination = $this->getParameter('kernel.project_dir').'/templates/proteine';
+             $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+             $safeFilename = $slugger->slug($originalFilename);
+             $newFilename = $safeFilename.'-'.uniqid().'.'.$uploadedFile->guessExtension();
+             try {
+                 $uploadedFile->move(
+                     $destination,
+                     $newFilename
+                 );
+             } catch (FileException $e) {
+                 // ... handle exception if something happens during file upload
+             }
+             $animal->setFileName($newFilename);
             //$animal->setCreatedAt(new \DateTime());
             // ... perform some action, such as saving the task to the database
             // for example, if Task is a Doctrine entity, save it!
