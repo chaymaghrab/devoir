@@ -1,4 +1,56 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajout animal{% endblock %}
+
+{% block body %}
+    <head>
+
+        <link rel="stylesheet" href="{{asset('css/style2.css')}}">
+    </head>
+<body>
+
+  <div class="page">
+    <div class="container">
+      <div class="left">
+        <div class="login">Ajout Animal</div>
+        <div class="eula"></div>
+      </div>
+      <div class="right">
+        <svg viewBox="0 0 320 300">
+          <defs>
+            <linearGradient
+                            inkscape:collect="always"
+                            id="linearGradient"
+                            x1="13"
+                            y1="193.49992"
+                            x2="307"
+                            y2="193.49992"
+                            gradientUnits="userSpaceOnUse">
+             
+            </linearGradient>
+          </defs>
+          <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
+        </svg>
+        <div class="form">
+          {{ form_start(form) }}
+          <label > {{form_label(form.Name)}}</label>
+          {{form_widget(form.Name)}}
+        <br><br>
+          <label >  {{form_label(form.categorie)}}</label>
+          {{form_widget(form.categorie, {'attr': {'class': 'categ'}}) }}
+          <br><br>
+          <label> {{form_label(form.imageFile)}}</label>
+          {{form_widget(form.imageFile) }}
+          <label > {{form_label(form.Description)}}</label>
+          {{ form_widget(form.Description, {'attr': {'class': 'desc','placeholder': 'description'}}) }}
+          <button type="submit" id="submit" value="Submit" style="padding:20px 80px 20px 80px;margin-left:80px;background-color:rgb(187, 154, 115)">{{ button_label|default('Save') }}</button>
+          {{ form_end(form) }}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    </body>
+    {% endblock %}

@@ -7,7 +7,6 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	
-	<link rel="stylesheet" href="cssform/style.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <!-- style css -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -25,9 +24,10 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
 </head>
-<body class="img js-fullheight" style="background-image: url(images/anim3.jpg);">
+<body >
         
 	<div class="container-fluid">
+		<div class="img js-fullheight" style="background-image: url(images/list5.jpg); height: 450px; background-repeat: no-repeat;background-size: cover; ">
 		<div class="row">
 			<div class="col-md-4">
 				<div><a href="index.html"><img src="images/log.png" style="width: 20%;"><h3 style="color: #ff9900;">PET SHOP</h3></diva> </div>
@@ -51,15 +51,15 @@
 						</div>	
 						</li>
 					</ul>
-				</div>
-	   
 	</div>
+	</div>
+</div>
 <div class="container">
 	{% for an in animal %}
-	<div class="card">
-	  <div class="card-header">
-		<img  height="250px" widht="50px" class="card-img-top" src="{{ asset('/uploads/' ~ an.filename)}}">		  </div>
-	  <div class="card-body">
+	<div class="card1">
+	  <div class="card1-header">
+		<img  height="250px" widht="100px" class="card1-img-top" src="{{ asset('/uploads/' ~ an.filename)}}">		  </div>
+	  <div class="card1-body">
 		<span class="tag tag-teal">{{ an.categorie.name }}</span>
 		<h4>
 		  
@@ -71,7 +71,47 @@
 		  </div>
 		</div>
 	  </div>
+	  {% endfor %}
 	</div>
-	{% endfor %}
+	</div>
+	    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/plugin.js"></script>
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+      <!-- javascript --> 
+      <script src="js/owl.carousel.js"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script>
+      $(document).ready(function(){
+      $(".fancybox").fancybox({
+         openEffect: "none",
+         closeEffect: "none"
+         });
+         
+         $(".zoom").hover(function(){
+         
+         $(this).addClass('transition');
+         }, function(){
+         
+         $(this).removeClass('transition');
+         });
+         });
+         </script> 
+
+
+   <script>
+    function openNav() {
+    document.getElementById("myNav").style.width = "100%";
+    }
+
+    function closeNav() {
+   document.getElementById("myNav").style.width = "0%";
+   }
+</script>
+     
 </body>
 	</html>
