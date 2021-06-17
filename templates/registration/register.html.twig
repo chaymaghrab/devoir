@@ -1,23 +1,170 @@
-{% extends 'base.html.twig' %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>register</title>
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
 
-{% block title %}Register{% endblock %}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="cssform/style.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<!-- style css -->
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<!-- Responsive-->
+<link rel="stylesheet" href="css/responsive.css">
+<!-- fevicon -->
+<link rel="icon" href="images/fevicon.png" type="image/gif" />
+<!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+<!-- Tweaks for older IEs-->
+<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+<!-- owl stylesheets --> 
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
-{% block body %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
+	</head>
+    <body class="img js-fullheight" style="background-image: url(images/anim3.jpg);">
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div><a href="index.html"><img src="images/log.png" style="width: 20%;"><h3 style="color: #ff9900;">PET SHOP</h3></diva> </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="menu_text">
+                        <ul>
+                            <li class="last"><a href="{{ path('app_login') }}"style="color: #ff9900;">Log in / Register</a></li>
+                            <li class="last"><a href="#"><img src="images/search-icon.png"></a></li>
+                            <li class="active">
+                             <div id="myNav" class="overlay">
+                                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                             <div class="overlay-content">
+                                 <a href="index.html">Home</a>
+                                <a href="about.html">About</a>
+                                <a href="gallery.html">Gallery</a>
+                                <a href="contact.html">Contact</a>
+                              </div>
+                            </div>
+                             <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+                            </div>	
+                            </li>
+                        </ul>
+                    </div>
+           
+        </div>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Login #10</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-wrap p-0">
+              <h3 class="mb-4 text-center">Have an account?</h3>
+              {% for flashError in app.flashes('verify_email_error') %}
+              <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+          {% endfor %}
+          {{ form_start(registrationForm, {'attr': {'class': 'signin-form'}}) }}
+             
+                
+            <div class="form-group1">
+                {{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control1','placeholder': 'nom'}}) }}
+                
+            </div>
+            <div class="form-group1">
+                {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control1','placeholder': 'prenom'}}) }}
+                
+            </div>
+                  <div class="form-group1">
+                    {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control1','type':'email' ,'placeholder': 'email'}}) }}
+                     
+                  </div>
+            <div class="form-group1">
+                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control1','type':'password' ,'placeholder': 'password'}}) }}
+              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+            </div>
+            
 
-    <h1>Register</h1>
+{#
+    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+    See https://symfony.com/doc/current/security/remember_me.html
 
-    {{ form_start(registrationForm) }}
-    {{ form_row(registrationForm.nom) }}
-    {{ form_row(registrationForm.prenom) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" name="_remember_me"> Remember me
+        </label>
+    </div>
+#}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-{% endblock %}
+            <div class="form-group">
+                <button type="submit" class="form-control1 btn btn-primary submit px-3">Sign In</button>
+            </div>
+        </button>
+        <a href="{{ path('app_register') }}">Vous N'avez Pas un Compte ?</a>
+            <div class="form-group1 d-md-flex">
+                <div class="w-50">
+                    <label class="checkbox-wrap checkbox-primary">Remember Me
+                                  <input type="checkbox" checked>
+                                  <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            
+            </div>
+            
+            {{ form_end(registrationForm) }}
+          
+          </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+ <!-- Javascript files-->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery-3.0.0.min.js"></script>
+  <script src="js/plugin.js"></script>
+  <!-- sidebar -->
+  <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="js/custom.js"></script>
+  <!-- javascript --> 
+  <script src="js/owl.carousel.js"></script>
+  <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+  <script>
+  $(document).ready(function(){
+  $(".fancybox").fancybox({
+     openEffect: "none",
+     closeEffect: "none"
+     });
+     
+     $(".zoom").hover(function(){
+     
+     $(this).addClass('transition');
+     }, function(){
+     
+     $(this).removeClass('transition');
+     });
+     });
+     </script> 
+
+
+<script>
+function openNav() {
+document.getElementById("myNav").style.width = "100%";
+}
+
+function closeNav() {
+document.getElementById("myNav").style.width = "0%";
+}
+</script>
+
+</body>
+</html>

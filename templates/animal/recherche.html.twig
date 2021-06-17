@@ -21,32 +21,29 @@
 </div>
 {% if animals %}
 	<h2>
-		animals Supplementaires
+		Animales
 	</h2>
 	<div class="row">
 	{% for animal in animals %}
-			  <div class="col-3">
-                <div class="card-deck">
-                    <!--<div class="card">
-                        <img  height="250px" widht="50px" class="card-img-top" src="{{ asset('/uploads/' ~ prod.filename)}}" alt="Card image cap" >	
-                    </div>-->
-                    <div class="card-body">
-                        <h5 class="card-title">{{animal.Name}}</h5>
-                        <p class="card-text">Description :
-                            {{animal.Description}}
-                           </p>
-        
-                        
-                            
-                            <a href="{{ path('animal.detail',{'id':animal.id}) }}" class="btn btn-primary">Détail</a>
-                            <a href="#" class="btn btn-primary">Commander</a>
-                        
-        
-        
-                    </div>
-                </div>
-                </div>
-            {% endfor %}
-            </div>
-        {% endif %}
-                {% endblock %}
+		<div class="col-3">
+		    <div class="card-deck">
+			<div class="card">
+				<img  height="250px" widht="50px" class="card-img-top" src="{{ asset('/images/' ~ animal.filename)}}" alt="Card image cap" >	
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">{{animal.Name}}</h5>
+				<p class="card-text">Prix :
+					{{animal.Description}}
+					DT</p>
+					<a href="{{ path('animal.edit',{'id':animal.id}) }}" class="btn btn-primary">Détail</a>
+
+
+
+
+			</div>
+		</div>
+		</div>
+	{% endfor %}
+	</div>
+{% endif %}
+{% endblock %}

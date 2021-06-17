@@ -29,6 +29,7 @@ class AnimalType extends AbstractType
                 // 'multiple' => true,
                 // 'expanded' => true,
             ])
+            ->add('prix')
             ->add('imageFile',FileType::class,[
                 'mapped' => false
             ])

@@ -26,7 +26,7 @@ class AnimalController extends AbstractController
         ]);
     }
     /**
-     * @Route("/home", name="animal.home" )
+     * @Route("/", name="animal.home" )
      */
     public function home(): Response
     {
@@ -185,13 +185,13 @@ class AnimalController extends AbstractController
         $propertySearch = new PropertySearch();
         $form = $this->createForm(PropertySearchType::class,$propertySearch);
         $form->handleRequest($request);
-        $proteines=[];
+        $animals=[];
         if ($form->isSubmitted()&&$form->isValid()){
 
         $nom = $propertySearch->getNom();
         if ($nom!= "")
         //si on a fourni un nom d'article on affiche tous les articles ayan
-        $animals=$this->getDoctrine()->getRepository(Animal::class)->findBy(['nom'=>$nom]);
+        $animals=$this->getDoctrine()->getRepository(Animal::class)->findBy(['Name'=>$nom]);
         else
         //si si aucun nom n'est fourni on affiche tous les articles
         $animals= $this->getDoctrine()->getRepository(Animal::class)->findAll();

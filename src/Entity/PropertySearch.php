@@ -1,18 +1,16 @@
 <?php
 namespace App\Entity;
 class PropertySearch
-{/**
-     * @ORM\Column(type="string", length=255)
-     */
-private $Name;
+{
+private $nom;
 
-public function getName():? string
+public function getNom():? string
 {
-   return $this->Name;
+   return $this->nom;
 }
-public function setName( string $Name): self
+public function setNom( string $nom): self
 {
-$this->Name=$Name;
+$this->nom=$nom;
 return$this;
 }
 }

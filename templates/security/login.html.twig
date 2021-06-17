@@ -1,19 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<!-- basic -->
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- mobile metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="viewport" content="initial-scale=1, maximum-scale=1">
-<!-- site metas -->
-<title>D-pot</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">	
-<!-- bootstrap css -->
+  <head>
+  	<title>Login 10</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="cssform/style.css">
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <!-- style css -->
 <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -30,57 +26,64 @@
 <link rel="stylesheet" href="css/owl.theme.default.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
-</head>
-<body>
-	<!-- section banner start -->
-	<div class="header-main">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-4">
-					<div><a href="index.html"><img src="images/logo.png"></a></div>
+	</head>
+	<body class="img js-fullheight" style="background-image: url(images/anim3.jpg);">
+        
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div><a href="index.html"><img src="images/log.png" style="width: 20%;"><h3 style="color: #ff9900;">PET SHOP</h3></diva> </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="menu_text">
+                            <ul>
+                                <li class="last"><a href="{{ path('app_login') }}"style="color: #ff9900;">Log in / Register</a></li>
+                                <li class="last"><a href="#"><img src="images/search-icon.png"></a></li>
+                                <li class="active">
+                                 <div id="myNav" class="overlay">
+                                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                                 <div class="overlay-content">
+                                     <a href="index.html">Home</a>
+                                    <a href="about.html">About</a>
+                                    <a href="gallery.html">Gallery</a>
+                                    <a href="contact.html">Contact</a>
+                                  </div>
+                                </div>
+                                 <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
+                                </div>	
+                                </li>
+                            </ul>
+                        </div>
+               
+            </div>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Login #10</h2>
 				</div>
-				<div class="col-md-8">
-					<div class="menu_text">
-						<ul>
-							<li class="last">Log in/Register</li>
-							<li class="last"><img src="images/search-icon.png"></li>
-							<li class="active">
-							<div id="myNav" class="overlay">
-                               <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                            <div class="overlay-content">
-                               <a href="index.html">Home</a>
-                               <a href="about.html">About</a>
-                               <a href="gallery.html">Gallery</a>
-                               <a href="contact.html">Contact</a>
-                            </div>
-                            </div>
-                            <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; Menu</span>
-                           </div>	
-                           </li>
-						</ul>
-					</div>
 			</div>
-		</div>
-    </div>
-<!--
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap p-0">
+		      	<h3 class="mb-4 text-center">Have an account?</h3>
+		      	<form  method="post"  class="signin-form">
+                    {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
+		      		<div class="form-group1">
+		      			<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control1" placeholder="email" autocomplete="email" required autofocus >
+		      		</div>
+	            <div class="form-group1">
+	              <input type="password" name="password" id="inputPassword"  class="form-control1" placeholder="Password" autocomplete="current-password"  required>
+	              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+	            </div>
+                <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
 
@@ -95,12 +98,34 @@
         </div>
     #}
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-    <a href="{{ path('app_register') }}">Vous N'avez Pas un Compte ?</a>
-</form>-->
-<!-- Javascript files-->
+	            <div class="form-group">
+	            	<button type="submit" class="form-control1 btn btn-primary submit px-3">Sign In</button>
+	            </div>
+            </button>
+            <a href="{{ path('app_register') }}">Vous N'avez Pas un Compte ?</a>
+	            <div class="form-group1 d-md-flex">
+	            	<div class="w-50">
+		            	<label class="checkbox-wrap checkbox-primary">Remember Me
+									  <input type="checkbox" checked>
+									  <span class="checkmark"></span>
+									</label>
+								</div>
+								
+	            </div>
+                
+	          </form>
+	          
+		      </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+     <!-- Javascript files-->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -139,6 +164,7 @@
    document.getElementById("myNav").style.width = "0%";
    }
 </script>
-     
-</body>
+
+	</body>
 </html>
+
