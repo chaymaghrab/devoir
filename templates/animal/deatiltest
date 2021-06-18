@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}animal
+{% endblock %}
+
+{% block body %}
+	<h1>Détail d'un animal :
+		{{ animal.id }}</h1>
+	<div class="container">
+		<table class="table table-striped">
+
+
+			<tr>
+				<td>
+					ID
+				</td>
+				<td>
+					{{ animal.id }}
+				</td>
+			</tr>
+			<tr>
+		</td>
+		<img  height="250px" widht="50px" class="card-img-top" src="{{ asset('/uploads/' ~ animal.filename)}}">	
+		<td></tr>
+			<tr>
+				<td>
+					Name
+				</td>
+				<td>
+					{{ animal.name }}
+				</td></tr>
+				<tr>
+					<td>
+						prix
+					</td>
+				<td>
+					{{ animal.prix }}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					desc
+				</td>
+				<td>
+					{{ animal.description }}
+				</td>
+			</tr>
+			<tr>
+				<td>
+					categorie
+				</td>
+				<td>
+					{{ animal.categorie.name }}
+				</td>
+			</tr>
+			
+			
+
+		</table>
+	</div>
+
+{% endblock %}

@@ -151,6 +151,15 @@ a {
 	background-size: cover;
     background-repeat: no-repeat;
 }
+.header_section2{
+	width: 100%; 
+	float: left;
+	
+	height: 650px;
+	padding-top: 20px;	
+	background-size: cover;
+    background-repeat: no-repeat;
+}
 
 .active{ 
 	background-color: #ffffff;

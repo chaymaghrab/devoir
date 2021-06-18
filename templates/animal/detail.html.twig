@@ -1,58 +1,53 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}animal
-{% endblock %}
-
-{% block body %}
-	<h1>Détail d'un animal :
-		{{ animal.id }}</h1>
-	<div class="container">
-		<table class="table table-striped">
-
-
-			<tr>
-				<td>
-					ID
-				</td>
-				<td>
-					{{ animal.id }}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Name
-				</td>
-				<td>
-					{{ animal.name }}
-				</td></tr>
-				<tr>
-					<td>
-						prix
-					</td>
-				<td>
-					{{ animal.prix }}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					desc
-				</td>
-				<td>
-					{{ animal.description }}
-				</td>
-			</tr>
-			<tr>
-				<td>
-					categorie
-				</td>
-				<td>
-					{{ animal.categorie.name }}
-				</td>
-			</tr>
-			
-			
-
-		</table>
-	</div>
-
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Card Food</title>
+  
+  <link rel="stylesheet" href="css/style.css" />
+  <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+   integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+   crossorigin="anonymous"
+  />
+ </head>
+ <body>
+  <div class="container">
+   <img
+    src="https://images.unsplash.com/photo-1549589237-9e70b6be4da8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=925&q=80"
+    alt="Pancake"
+   />
+   <div class="container__text">
+    <h1>Caramel Cake Pancakes</h1>
+    <div class="container__text__star">
+     <span class="fa fa-star checked"></span>
+     <span class="fa fa-star checked"></span>
+     <span class="fa fa-star checked"></span>
+     <span class="fa fa-star checked"></span>
+     <span class="fa fa-star checked"></span>
+    </div>
+    <p>
+     If you're fan of caramel cake, then you'll love our Caramel Cake Pancakes.
+     We Complete these over-the-top pancakes with Caramel Syrup.
+    </p>
+    <div class="container__text__timing">
+     <div class="container__text__timing_time">
+      <h2>Hands-on Time</h2>
+      <p>30 min</p>
+     </div>
+     <div class="container__text__timing_time">
+      <h2>Total Time</h2>
+      <p>40 min</p>
+     </div>
+     <div class="container__text__timing_time">
+      <h2>Yield</h2>
+      <p>40 min</p>
+     </div>
+    </div>
+    <button class="btn">view recipe <i class="fa fa-arrow-right"></i></button>
+   </div>
+  </div>
+ </body>
+</html>

@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AnimalController extends AbstractController
@@ -37,7 +38,18 @@ class AnimalController extends AbstractController
         ]);
     }
     /**
-     * @Route("/animal/detail/{id}", name="animal.detail")
+     * @Route("/details", name="animal.det" )
+     */
+    public function details(): Response
+    {
+        $repository= $this->getDoctrine()->getRepository(Animal::class);
+        $animal=$repository->findAll();
+        return $this->render('animal/details.html.twig', [
+            'animal' =>  $animal ,
+        ]);
+    }
+    /**
+     * @Route("/animal/details/{id}", name="animal.details")
      */
     public function detail(Animal $animal): Response
     {
@@ -49,12 +61,13 @@ class AnimalController extends AbstractController
             );
         }
 
-        return $this->render('animal/detail.html.twig', [
+        return $this->render('animal/details.html.twig', [
             'animal' => $animal,
         ]);
     }
     /**
      * @Route("/animal/delete/{id}", name="animal.delete")
+     *  @IsGranted("ROLE_ADMIN")
      */
     public function delete($id): Response
     {
